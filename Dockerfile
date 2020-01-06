@@ -1,7 +1,10 @@
 FROM openjdk:8-jdk-slim
 
-RUN apt-get update && apt-get upgrade -y && apt-get install -y \
-    wget && \
+RUN groupadd --gid 1000 node && \
+    useradd --uid 1000 --gid node --shell /bin/bash --create-home java && \
+    apt-get update && \
+    apt-get upgrade -y && \
+    apt-get install -y wget && \
     cd /bin && \
     rm sh && \
     ln -s bash /bin/sh && \
